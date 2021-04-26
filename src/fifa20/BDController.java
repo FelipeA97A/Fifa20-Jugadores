@@ -535,7 +535,7 @@ public class BDController {
 		try {
 			Statement miStatement = this.miConexion.createStatement();
 
-			ResultSet rs = miStatement.executeQuery("SELECT * FROM cartas WHERE cod_jugador='"+cod_jugador+"' AND nombre!='SIMPLE'");
+			ResultSet rs = miStatement.executeQuery("SELECT * FROM cartas WHERE cod_jugador= '" + cod_jugador + "';");
 
 			while (rs.next() == true) {
 				cartas.add(new Carta(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),

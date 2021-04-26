@@ -2055,15 +2055,15 @@ input, textarea {
 	}
 
 	:-moz-placeholder {
-		color: ##666565;
+		color: #666565;
 	}
 
 	::-moz-placeholder {
-		color: ##666565;
+		color: #666565;
 	}
 
 	:-ms-input-placeholder {
-		color: ##666565;
+		color: #666565;
 	}
 
 /* Image */
@@ -3426,7 +3426,7 @@ input, textarea {
 	
 	/* Cuadraditos Cartas  */
 	
-	.Simple {
+	.SIMPLE {
 		margin:0px auto;font-weight: bold;
 		height: 36px;
 		width: 35px;
@@ -3565,11 +3565,11 @@ text-align: center;*/
 
 .K { grid-area: K; 
 /*text-align: center;*/
-border: }
+border:1 }
 
 .L { grid-area: L; 
 /*text-align: center;*/
-border: 
+border: 1
 }
 
 
@@ -3717,28 +3717,4 @@ div.mm-dropdown ul li img {
     height: auto;
     max-height: 210px;
     overflow-x: hidden;
-}
-    /*Clases propias*/
-  
-.fotoJugador {
-	width: 50px;
-	height: auto;
-}
-
-.fotoEscudo {
-	width: 80px;
-	height: auto;
-	margin: 1rem;
-}
-    
-.fotoLiga {
-	width: 50px;
-	height: auto;
-}
-
-.bandera {
-	width: 50px;
-	height: auto;
-	margin-left: 1rem;
-	margin-right: 1rem;
 }

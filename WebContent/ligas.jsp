@@ -7,7 +7,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/estilos.css"/>
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<title>Proyecto Web FIFA20</title>
 </head>
@@ -83,65 +82,53 @@
 							
 								<article>
 									<header>
-										<h2>Jugadores y equipos</h2>
+										<h2>Ligas</h2>
 									</header>
 									
 									<div class="table-wrapper">
 								<table class="alt">
 									<thead>
 										<tr>
-											<th>Equipo</th>
+											<th>Nombre</th>
 											<th width='195' colspan="3"></th>
-											<th colspan="19">Jugadores</th>
+											<th colspan="19">Equipos</th>
 											
 										</tr>
 									</thead>
 									
 									<tbody>
 									
-									
-									<% 
-									BDController controlador = new BDController();
-									ArrayList<Equipo> equipos = controlador.dameEquipos();
-									for (int i = 0; i < equipos.size(); i++) {
-										ArrayList<Jugador> jugadores = controlador.dameJugadoresEquipo(equipos.get(i).getCod_equipo());
-									%>
-									
-										<tr>
-											<td width='60' rowspan="2">
-												<a href="jugadores.jsp?cod_equipo=<% out.print(equipos.get(i).getCod_equipo()); %>">
-													<img src="images/equipos/<% out.print(equipos.get(i).getCod_equipo()); %>.png" class="fotoEscudo"/>
-												</a>
-											</td>
-											<td width='300' colspan="3" style="padding-left: 15px;">
-												<% out.print(equipos.get(i).getNombre()); %>
-											</td>
-											<% for (int j = 0; j < jugadores.size(); j++) { %>
+										<% 
+										int cod_liga = Integer.parseInt(request.getParameter("cod_liga"));
+										BDController controlador = new BDController();
+										Liga liga = controlador.dameLiga(cod_liga);
+											String nombre = liga.getNombre();
+											String pais = liga.getPais();
+											ArrayList<Equipo> equipos = controlador.dameEquiposLiga(liga.getCod_liga());
+										%>
+											<tr>
+											<td width='60' rowspan="2"><img src="images/ligas/<% out.print(cod_liga); %>.png" title="<%out.print(liga.getNombre());%>" class="fotoEscudo"/></td>
+											<td width='300' colspan="3" style="padding-left: 15px;"><% out.print(nombre); %></td>
 											
+											<% 
+											
+											for (int j = 0; j < equipos.size(); j++) {
+												%>
 												<td rowspan="2" width='60' style="text-align: center;">
-													<a href="jugador_alu.jsp?cod_jugador=<% out.print(jugadores.get(j).getCod_jugador()); %>&nombre=SIMPLE">
-														<img src="images/jugadores/<% out.print(jugadores.get(j).getCod_jugador()); %>.png" class="fotoJugador" title="<%out.print(jugadores.get(j).getNombre());%>"/>
+													<a href="jugadores.jsp?cod_equipo=<% out.print(equipos.get(j).getCod_equipo()); %>">
+														<img src="images/equipos/<% out.print(equipos.get(j).getCod_equipo()); %>.png" class="fotoJugador" title="<%out.print(equipos.get(j).getNombre());%>"/>
 													</a>
 												</td>	
-											
-											<% } %>
+										<%
+										}
+										%>
 																				
 										</tr>
 										<tr>
-										  
-										  <td width='50' style="text-align: left; padding-left: 14px;">
-										  	<a href="ligas.jsp?cod_liga=<% out.print(equipos.get(i).getCod_liga()); %>">
-										  		<img src="images/ligas/<% out.print(equipos.get(i).getCod_liga()); %>.png" class="fotoLiga"/>
-										  	</a>
-										  </td>
-										  <td width='205'>
-										  	<img src="images/paises/<% out.print(controlador.dameLiga(equipos.get(i).getCod_liga()).getPais()); %>.png" class="bandera"/>
-										  </td>
+										  <td width='50' style="text-align: left; padding-left: 14px;"><img src="images/paises/<% out.print(pais); %>.png" class="imagenBandera"/></td>
+										  <!-- <td width='205'>vacío</td> -->
 										</tr>
 										
-									<% 
-									}
-									%>
 										
 									</tbody>
 									

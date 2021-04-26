@@ -1,24 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="fifa20.*" %>
 <%@ page import="java.util.*" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/estilos.css"/>
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<title>Proyecto Web FIFA20</title>
 </head>
-
 <body class="is-preload">
 		<div id="page-wrapper">
 			<!-- Header -->
 				<div id="header">
 
 					<!-- Logo -->
-						<h1><a href="index.jsp" id="logo">FIFA20</a></a></h1>
+						<h1><a href="index.jsp" id="logo">FIFA19</a></a></h1>
 
 					<!-- Nav -->
 						<nav id="nav">
@@ -81,67 +78,78 @@
 
 							<!-- Content -->
 							
+							<%
+							int cod_equipo = Integer.parseInt(request.getParameter("cod_equipo"));
+							BDController controlador = new BDController(); 
+							ArrayList<Jugador> jugadores = controlador.dameJugadoresEquipo(cod_equipo);
+							%>
+							
 								<article>
 									<header>
-										<h2>Jugadores y equipos</h2>
+										<table >
+											<tr style="border:0px;" >	
+												<td style="background-color: white;"><h2>Jugadores del <% out.print(controlador.dameEquipo(cod_equipo).getNombre()); %></h2></td><td style="text-align: right;background-color: white;"></td>
+											</tr>
+										</table>
 									</header>
 									
 									<div class="table-wrapper">
 								<table class="alt">
 									<thead>
 										<tr>
-											<th>Equipo</th>
-											<th width='195' colspan="3"></th>
-											<th colspan="19">Jugadores</th>
-											
+											<th>Nombre</th>
+											<th width='325' colspan="3"></th>
+											<th style="text-align: center;">RAT</th>
+											<th style="text-align: center;">POS</th>
+											<th style="text-align: center;">CARTA</th>
+											<th style="text-align: center;">PRECIO</th>
+											<th style="text-align: center;">SKI</th>
+											<th style="text-align: center;">WF</th>
+											<th style="text-align: center;">PAC</th>
+											<th style="text-align: center;">SHO</th>
+											<th style="text-align: center;">PAS</th>
+											<th style="text-align: center;">DRI</th>
+											<th style="text-align: center;">DEF</th>
+											<th style="text-align: center;">PHI</th>
+											<th style="text-align: center;">ALTURA</th>
 										</tr>
 									</thead>
-									
 									<tbody>
 									
-									
-									<% 
-									BDController controlador = new BDController();
-									ArrayList<Equipo> equipos = controlador.dameEquipos();
-									for (int i = 0; i < equipos.size(); i++) {
-										ArrayList<Jugador> jugadores = controlador.dameJugadoresEquipo(equipos.get(i).getCod_equipo());
-									%>
-									
-										<tr>
-											<td width='60' rowspan="2">
-												<a href="jugadores.jsp?cod_equipo=<% out.print(equipos.get(i).getCod_equipo()); %>">
-													<img src="images/equipos/<% out.print(equipos.get(i).getCod_equipo()); %>.png" class="fotoEscudo"/>
-												</a>
-											</td>
-											<td width='300' colspan="3" style="padding-left: 15px;">
-												<% out.print(equipos.get(i).getNombre()); %>
-											</td>
-											<% for (int j = 0; j < jugadores.size(); j++) { %>
+										<%
+										for (int i = 0; i < jugadores.size(); i++) {
+											Carta carta = controlador.dameCartaSimple(jugadores.get(i).getCod_jugador());
+											%><td width='60' rowspan="2"><img src="images/jugadores/<% out.print(jugadores.get(i).getCod_jugador()); %>.png" style="width: 100px; height: auto;"/></td>
+											<td width='325' colspan="3" style="padding-left: 15px;"><% out.print(jugadores.get(i).getNombre()); %></td>
 											
-												<td rowspan="2" width='60' style="text-align: center;">
-													<a href="jugador_alu.jsp?cod_jugador=<% out.print(jugadores.get(j).getCod_jugador()); %>&nombre=SIMPLE">
-														<img src="images/jugadores/<% out.print(jugadores.get(j).getCod_jugador()); %>.png" class="fotoJugador" title="<%out.print(jugadores.get(j).getNombre());%>"/>
-													</a>
-												</td>	
-											
-											<% } %>
-																				
+												<td rowspan="2" width='60' style="text-align: center;"><p style="padding: 1rem;text-align: center; <% out.print(carta.colorRat()); %>"><% out.print(carta.getRat()); %></p></td>	
+												<td rowspan="2" width='60' style="text-align: center;"><% out.print(carta.getPos()); %></td>	
+												<td rowspan="2" width='100' style="text-align: center;"><% out.print(carta.getNombre()); %></td>	
+												<td rowspan="2" width='100' style="text-align: center;"><% out.print(carta.getPrecio()); %></td>	
+												<td rowspan="2" width='60' style="text-align: center;"><% out.print(carta.getFiligranas()); %></td>	
+												<td rowspan="2" width='60' style="text-align: center;"><% out.print(carta.getPierna_mala()); %></td>
+												<td rowspan="2" width='60' style="text-align: center;"><p class="stat  <% out.print(carta.colorPac()); %>"><% out.print(carta.getPac()); %></p></td>	
+												<td rowspan="2" width='60' style="text-align: center;"><p class="stat <% out.print(carta.colorSho()); %>"><% out.print(carta.getSho()); %></p></td>
+												<td rowspan="2" width='60' style="text-align: center;"><p class="stat <% out.print(carta.colorPas()); %>"><% out.print(carta.getPas()); %></p></td>
+												<td rowspan="2" width='60' style="text-align: center;"><p class="stat <% out.print(carta.colorDri()); %>"><% out.print(carta.getDri()); %></p></td>
+												<td rowspan="2" width='60' style="text-align: center;"><p class="stat <% out.print(carta.colorDef()); %>"><% out.print(carta.getDef()); %></p></td>
+												<td rowspan="2" width='60' style="text-align: center;"><p class="stat <% out.print(carta.colorPhy()); %>"><% out.print(carta.getPhy()); %></p></td>
+												<td rowspan="2" width='60' style="text-align: center;"><% out.print(jugadores.get(i).getAltura()); %></td>
+																						
 										</tr>
 										<tr>
-										  
-										  <td width='50' style="text-align: left; padding-left: 14px;">
-										  	<a href="ligas.jsp?cod_liga=<% out.print(equipos.get(i).getCod_liga()); %>">
-										  		<img src="images/ligas/<% out.print(equipos.get(i).getCod_liga()); %>.png" class="fotoLiga"/>
+										  <td width='45' style="text-align: right;"><img src="images/equipos/<% out.print(jugadores.get(i).getCod_equipo()); %>.png" style="width: 50px; height: auto;"/></td>
+										  <td width='50' style="text-align: center;"><img src="images/paises/<% out.print(jugadores.get(i).getPais()); %>.png" style="width: 50px; height: auto;"/></td>
+										  <td width='230'>
+										  	<a href="ligas.jsp?cod_liga=<% out.print(controlador.dameCodLiga(jugadores.get(i).getCod_equipo()));%>">
+												  <img src="images/ligas/<% out.print(controlador.dameCodLiga(jugadores.get(i).getCod_equipo()));%>.png" style="width: 50px; height: auto;"/>
 										  	</a>
 										  </td>
-										  <td width='205'>
-										  	<img src="images/paises/<% out.print(controlador.dameLiga(equipos.get(i).getCod_liga()).getPais()); %>.png" class="bandera"/>
-										  </td>
 										</tr>
+										<% 
+										}																		
+										%>
 										
-									<% 
-									}
-									%>
 										
 									</tbody>
 									

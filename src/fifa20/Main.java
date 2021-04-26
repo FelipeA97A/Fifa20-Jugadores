@@ -9,9 +9,10 @@ public class Main {
 		// TODO Auto-generated method stub
 		BDController controlador = new BDController();
 		ArrayList<Carta> cartas = controlador.dameCartas();
-		ArrayList<Jugador> jugadores = controlador.dameJugadores();
-		System.out.println(controlador.dameCartaSimple(jugadores.get(5).getCod_jugador()).getNombre());
-		System.out.println(jugadores.get(5).getCod_jugador());
+		String[] e = cartas.get(3).colorBar();
+		for (int ç = 0; ç < e.length; ç++) {
+			System.out.println(e[ç]);
+		}
 	}
 
 }

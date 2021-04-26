@@ -1,0 +1,126 @@
+    /*Clases propias*/
+    
+.imagenLiga {
+	width: 40px;;
+	height: auto;
+}
+
+.imagenBandera {
+	width: 50px;
+	height: auto;
+	margin: 1rem;
+}
+
+.imagenEscudo {
+	width: 75px;
+	height: auto;
+}
+
+.fotoJugador {
+	width: 50px;
+	height: auto;
+}
+
+.fotoEscudo {
+	width: 80px;
+	height: auto;
+	margin: 1rem;
+}
+    
+.fotoLiga {
+	width: 50px;
+	height: auto;
+}
+
+.bandera {
+	width: 50px;
+	height: auto;
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+.cartaFotoJugador {
+	width: 100px;
+	height: auto;
+}
+
+.cartaEscudo {
+	width: 30px;
+	height: auto;
+}
+
+.cartaBandera {
+	width: 40px;
+	height: auto;
+}
+
+.statColorRojo {
+	background-color: #F44336;
+	color: white;
+}
+
+.statBarRojo {
+	background-color: #F44336;
+}
+
+.rojo{
+	color: #F44336;
+}
+
+.statColorAmarillo {
+	background-color: #E9BC0B;
+	color: black;
+}
+
+.statBarAmarillo{
+	background-color: #E9BC0B;
+}
+
+.amarillo {
+	color: #E9BC0B;
+}
+
+.statColorNaranja {
+	background-color: #FB8C00;
+	color: white;
+}
+
+.statBarNaranja {
+	background-color: #FB8C00;
+}
+
+.naranja {
+	color: #FB8C00;
+}
+
+.statColorVerdeClaro {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.statBarVerdeC {
+	background-color: #4CAF50;
+}
+
+.verdeC {
+	color: #4CAF50;
+}
+
+.statColorVerdeOscuro {
+	background-color: #09720D;
+	color: white
+}
+
+.statBarVerdeO {
+	background-color: #09720D;
+}
+
+.verdeO {
+	color: #09720D;
+}
+
+.stat {
+	padding: 1rem;
+	text-align: center;
+}
+
